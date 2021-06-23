@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>homePage</title>
+</head>
+
+<body>
+    <div class="root">
+        <div class="left">
+            <ul>
+                <li>
+                    <a href="javascript:;">
+                        <img src="images/h000.png" alt="">
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="homePage.html">
+                        <img src="images/home.png" class="img1" alt="">
+                        <img src="images/home_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page2.html">
+                        <img src="images/h1.png" class="img1" alt="">
+                        <img src="images/h1_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page3.html">
+                        <img src="images/h2.png" class="img1" alt="">
+                        <img src="images/h2_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page4.html">
+                        <img src="images/h3.png" class="img1" alt="">
+                        <img src="images/h3_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page5.html">
+                        <img src="images/h5.png" class="img1" alt="">
+                        <img src="images/h5_1.png" class="img2" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="info flex">
+                <h1>Good Morning,Allison</h1>
+                <div class="search">
+                    <input type="text" placeholder="SEARCH" name="" id="">
+                    <button>BROWSE ALL COURSES</button>
+                </div>
+            </div>
+            <div class="course">
+                <h3>Your Current Course</h3>
+                <div class="course-list flex">
+                    <div class="item">
+                        <img src="images/course_03.png" alt="">
+                        <div class="text">
+                            <p>Color Theory for designer</p>
+                            <p>Prof.Fiona</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/course_05.png" alt="">
+                        <div class="text">
+                            <p>History of Art</p>
+                            <p>Prof.Rob</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/course_08.png" alt="">
+                        <div class="text">
+                            <p>Design Thinking</p>
+                            <p>Prof.Kelly</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/course_11.png" alt="">
+                        <div class="text">
+                            <p>Web Design</p>
+                            <p>Prof.Jason</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-bottom flex">
+                <div class="today">
+                    <div class="today-top flex">
+                        <h3>Your Task Today</h3>
+                        <div class="today-top-right">
+                            <a href="javascript:;">+ADD TASK</a>
+                            <a href="javascript:;">-DELETE</a>
+                        </div>
+                    </div>
+                    <div class="today-list">
+                        <ul>
+                            <li>
+                                <input class="checkbox" type="checkbox" name="" id="">
+                                <span>Do an assignment</span>
+                            </li>
+                            <li>
+                                <input class="checkbox" type="checkbox" name="" id="">
+                                <span>Create app for basic evaluation</span>
+                            </li>
+                            <li>
+                                <input class="checkbox" type="checkbox" name="" id="">
+                                <span>Complete Web quiz</span>
+                            </li>
+                            <li>
+                                <input class="checkbox" type="checkbox" name="" id="">
+                                <span>Complete Art quiz</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="schedule">
+                    <h3>Weeks Schedule</h3>
+                    <div class="schedule-list">
+                        <img src="images/schedule_03.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="audio">
+                <div class="audio-top flex">
+                    <h3>Play music</h3>
+                    <a href="">+iTunes</a>
+                </div>
+                <div class="audio-list">
+                    <img src="images/music_03.png" alt="">
+                    <p>Homura</p>
+                    <p>Liso</p>
+                    <div id="music" style="margin-top: 4%;">
+                        <audio controls>
+                            <source  src="images/music.mp3"/>
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="date">
+                <img src="images/date.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var inputCheckbox = document.getElementsByClassName("checkbox");
+        for (var i = 0; i < inputCheckbox.length; i++) {
+            inputCheckbox[i].onclick = function () {
+                console.log(this.nextElementSibling)
+                if (this.checked) {
+                    this.nextElementSibling.classList.add("active");
+                } else {
+                    this.nextElementSibling.classList.remove("active");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
