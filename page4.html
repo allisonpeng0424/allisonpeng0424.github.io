@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>page4</title>
+</head>
+
+<body>
+    <div class="root">
+        <div class="left">
+            <ul>
+                <li>
+                    <a href="javascript:;">
+                        <img src="images/h000.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="homePage.html">
+                        <img src="images/home.png" class="img1" alt="">
+                        <img src="images/home_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page2.html">
+                        <img src="images/h1.png" class="img1" alt="">
+                        <img src="images/h1_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page3.html">
+                        <img src="images/h2.png" class="img1" alt="">
+                        <img src="images/h2_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="page4.html">
+                        <img src="images/h3.png" class="img1" alt="">
+                        <img src="images/h3_1.png" class="img2" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="page5.html">
+                        <img src="images/h5.png" class="img1" alt="">
+                        <img src="images/h5_1.png" class="img2" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main flex" style="margin:2% 20px 0 120px; justify-content: space-between; align-items: flex-start;">
+            <div class="main-left">
+                <h1>Manage Your Time!</h1>
+                <img src="images/page4_07.png" alt="">
+                <img src="images/page4_11.png" alt="">
+            </div>
+            <div class="main-right">
+                <div class="time-text flex">
+                    <span>Start Time</span>
+                    <span>End Time</span>
+                </div>
+                <div class="time-edit flex">
+                    <div class="time-date flex">
+                        <div class="time-date-le">
+                            <input type="text" value="00:00" placeholder="Start Time" id="start" readonly="true">
+                        </div>
+                        <div class="border"></div>
+                        <div class="time-date-re">
+                            <input type="text" value="00:00" placeholder="End Time" id="end" readonly="true">
+                        </div>
+                    </div>
+                    <img src="images/page4_03.png" id="edit" alt="">
+                </div>
+                <div class="time">
+                    <div class="cir flex">
+                        <span id="txt">00:00:00</span>
+                    </div>
+                </div>
+                <div class="time-btn flex">
+                    <button id="btncontiue" disabled="false" onclick="restart()">Start</button>
+                    <button onclick="stop()">||</button>
+                    <button id="reset" onclick="reset()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        var hours = "",
+            mins = "",
+            time = "",
+            timeArr = "",
+            millsec = 1000,
+            sec,
+            int = self.setInterval("clock()", millsec),
+            xx,
+            yy,
+            zz,
+            flg = 0;
+
+        time = $("#start").val() + ":" + $("#end").val();
+        timeArr = time.split(":");
+        hours = Number(timeArr[2]) - Number(timeArr[0]);
+        mins = Number(timeArr[1]) - Number(timeArr[3]);
+        $("#edit").click(function () {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+                $("#start").attr("readonly", true);
+                $("#end").attr("readonly", true);
+                $(".time-date input").css("borderBottom", "none");
+                time = $("#start").val() + ":" + $("#end").val();
+                timeArr = time.split(":");
+                hours = Number(timeArr[2]) - Number(timeArr[0]);
+                mins = Number(timeArr[1]) - Number(timeArr[3]);
+            } else {
+                $(this).addClass("active");
+                $("#start").attr("readonly", false);
+                $("#end").attr("readonly", false);
+                $(".time-date input").css("borderBottom", "1px solid #f55780");
+            }
+        });
+    </script>
+
+    <script>
+        function setTotaltime() {
+            sec = 0;
+            hour = hours;
+            min = mins;
+            sec1 = 0;
+            sec = parseInt(sec1) + parseInt(min) * 60 + parseInt(hour) * 60 * 60;
+        }
+        function restart() {
+            $(this).removeClass("active");
+            $("#start").attr("readonly", true);
+            $("#end").attr("readonly", true);
+            $(".time-date input").css("borderBottom", "none");
+            time = $("#start").val() + ":" + $("#end").val();
+            timeArr = time.split(":");
+            hours = Number(timeArr[2]) - Number(timeArr[0]);
+            mins = Number(timeArr[1]) - Number(timeArr[3]);
+            if (document.getElementById("txt").innerText == '00:00:00') {
+                setTotaltime();
+                zz = 0;
+                xx = (sec % 60);
+                yy = parseInt(sec / 60);
+                if (yy >= 60) {
+                    yy = (yy % 60);
+                    zz = parseInt(sec / 3600);
+                }
+                flg = 1;
+                document.getElementById("btncontiue").disabled = false;
+            } else {
+                flg = 1;
+                document.getElementById("btncontiue").disabled = true;
+            }
+        }
+        function stop() {
+            flg = 0;
+            document.getElementById("btncontiue").disabled = false;
+        }
+        function start() {
+            flg = 1;
+            document.getElementById("btncontiue").disabled = true;
+        }
+        function clock() {
+            console.log(xx, '111')
+            if (flg == 1) {
+                if (xx == 0 && yy >= 1) {
+                    xx = 60;
+                    yy--;
+                }
+                if (xx == 0 && yy == 0 && zz >= 1) {
+                    xx = 60;
+                    yy = 59;
+                    zz--;
+                }
+                if (xx == 0 && yy == 0 && zz == 0) {
+                    xx = (sec % 60);
+                    yy = parseInt(sec / 60);
+                    if (yy > 60) {
+                        yy = (yy % 60);
+                        zz = parseInt(sec / 3600);
+                    }
+                }
+
+                if (xx < 1) { xx = 0; } else { xx--; }
+
+                m = yy;
+                if (yy < 10) {
+                    m = '0' + yy;
+                }
+                s = xx;
+                if (xx < 10) {
+                    s = '0' + xx;
+                }
+                z = zz;
+                if (zz < 10) {
+                    z = '0' + zz;
+                }
+                document.getElementById("txt").innerHTML = z + ':' + m + ':' + s;
+                if (z == '00' && m == '00' && s == '00') {
+                    flg = 0;
+                }
+            }
+        }
+        restart();
+
+        function reset() {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
